@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Dian Septi Azizah</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Poppins:wght@300;400;600&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            color: #333;
+            overflow: hidden; /* Mencegah scroll, diganti dengan sistem slide */
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .page {
+            position: absolute;
+            width: 90%;
+            max-width: 500px;
+            height: 85%;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            pointer-events: none;
+        }
+
+        .page.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        h1, h2 {
+            font-family: 'Caveat', cursive;
+            color: #ff6b81;
+            margin-bottom: 15px;
+            font-size: 2.5rem;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 5px solid #ff6b81;
+            box-shadow: 0 5px 15px rgba(255, 107, 129, 0.3);
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background: #ff6b81;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: auto;
+        }
+
+        .btn:hover { background: #ff4757; transform: scale(1.05); }
+
+        /* Hiasan background */
+        .floating-hearts {
+            position: absolute;
+            width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            background: url('https://cdn.pixabay.com/photo/2017/02/09/16/59/heart-2052876_960_720.png') center/50px repeat;
+            opacity: 0.05;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- GANTI MUSIK DI SINI: Masukkan file mp3 kamu ke folder yang sama dan ubah src -->
+    <audio id="bgm" src="musik-pilihanmu.mp3" loop></audio>
+
+    <div class="floating-hearts"></div>
+
+    <div class="container">
+        <!-- HALAMAN 1 -->
+        <div class="page active" id="page1">
+            <h1>Halo, Dian Septi Azizah</h1>
+            <p>Ada pesan spesial buat kamu. Pastikan volume hp/laptopmu menyala ya!</p>
+            <button class="btn" onclick="startLetter()">Buka Surat 💌</button>
+        </div>
+
+        <!-- HALAMAN 2 -->
+        <div class="page" id="page2">
+            <h2>28 September 2003</h2>
+            <!-- GANTI FOTO BAYI DI SINI -->
+            <img src="foto-bayi.jpg" alt="Foto Bayi Dian">
+            <p>Hari di mana seorang anak perempuan manis lahir. Kamu membuat keluarga kita jadi lebih ramai dan penuh tawa.</p>
+            <button class="btn" onclick="nextPage(2)">Lanjut ➡️</button>
+        </div>
+
+        <!-- HALAMAN 3 -->
+        <div class="page" id="page3">
+            <h2>Masa Kecil Kita</h2>
+            <!-- GANTI FOTO MASA KECIL DI SINI -->
+            <img src="foto-kecil.jpg" alt="Foto Masa Kecil">
+            <p>Dari kecil kita main bareng, berantem, baikan lagi. Masa-masa yang nggak akan pernah aku lupakan.</p>
+            <button class="btn" onclick="nextPage(3)">Lanjut ➡️</button>
+        </div>
+
+        <!-- HALAMAN 4 -->
+        <div class="page" id="page4">
+            <h2>Tumbuh Dewasa</h2>
+            <img src="foto-remaja.jpg" alt="Foto Remaja">
+            <p>Nggak terasa waktu cepat berlalu. Adik kecilku yang dulu cengeng sekarang udah jadi perempuan dewasa yang mandiri.</p>
+            <button class="btn" onclick="nextPage(4)">Lanjut ➡️</button>
+        </div>
+
+        <!-- HALAMAN 5 -->
+        <div class="page" id="page5">
+            <h2>Dari Kakakmu</h2>
+            <img src="foto-candid.jpg" alt="Foto Candid">
+            <p>Aku mungkin jarang bilang ini, tapi aku sangat bangga dan sayang banget sama kamu. Terima kasih udah jadi adik yang baik.</p>
+            <button class="btn" onclick="nextPage(5)">Lanjut ➡️</button>
+        </div>
+
+        <!-- HALAMAN 6 -->
+        <div class="page" id="page6">
+            <h2>Momen Nyebelin</h2>
+            <img src="foto-lucu.jpg" alt="Foto Lucu/Aib">
+            <p>Walaupun kadang kamu nyebelin, suka pinjem barang diem-diem... tapi itu yang bikin rumah nggak sepi.</p>
+            <button class="btn" onclick="nextPage(6)">Lanjut ➡️</button>
+        </div>
+
+        <!-- HALAMAN 7 -->
+        <div class="page" id="page7">
+            <h2>Kamu Hebat!</h2>
+            <img src="foto-cantik.jpg" alt="Foto Cantik">
+            <p>Aku selalu kagum sama semangat dan kebaikan hatimu. Tetap jadi Dian yang kuat dan nggak gampang menyerah ya!</p>
+            <button class="btn" onclick="nextPage(7)">Lanjut ➡️</button>
+        </div>
+
+        <!-- HALAMAN 8 -->
+        <div class="page" id="page8">
+            <h1 style="font-size: 4rem;">23</h1>
+            <h2>Selamat Ulang Tahun!</h2>
+            <p>Welcome to the 23 club, Dian Septi Azizah! Umur baru, semangat baru.</p>
+            <button class="btn" onclick="nextPage(8)">Lanjut ➡️</button>
+        </div>
+
+        <!-- HALAMAN 9 -->
+        <div class="page" id="page9">
+            <h2>Doa Terbaik</h2>
+            <img src="foto-berdua.jpg" alt="Foto Berdua">
+            <p>Semoga di umur 23 ini, karirmu makin lancar, rezeki melimpah, jodoh didekatkan, dan selalu bahagia. Amin!</p>
+            <button class="btn" onclick="nextPage(9)">Lanjut ➡️</button>
+        </div>
+
+        <!-- HALAMAN 10 -->
+        <div class="page" id="page10">
+            <h2>Make a Wish! 🎂</h2>
+            <img src="https://media.giphy.com/media/T8nRXVRudkEteI8FDO/giphy.gif" alt="Kue Ulang Tahun" style="border:none; border-radius:10px; box-shadow:none;">
+            <p>Tutup mata, berdoa, dan anggap kamu lagi niup lilin ini. I love you, little sister!</p>
+            <button class="btn" onclick="location.reload()">Ulangi Surat 🔄</button>
+        </div>
+    </div>
+
+    <script>
+        let currentAudio = document.getElementById('bgm');
+
+        function startLetter() {
+            // Memulai musik setelah interaksi pertama (kebijakan browser)
+            currentAudio.play().catch(error => console.log("Autoplay dicegah browser, butuh interaksi."));
+            nextPage(1);
+        }
+
+        function nextPage(currentIndex) {
+            // Sembunyikan halaman saat ini
+            document.getElementById(`page${currentIndex}`).classList.remove('active');
+            
+            // Tampilkan halaman berikutnya
+            let nextIndex = currentIndex + 1;
+            if(document.getElementById(`page${nextIndex}`)) {
+                document.getElementById(`page${nextIndex}`).classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
